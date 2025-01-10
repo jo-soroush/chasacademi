@@ -1,0 +1,15 @@
+#!/bin/bash
+# Create systemd service file
+echo "Creating systemd service file..."
+cat <<EOF | sudo tee /usr/lib/systemd/system/restic.service > /dev/null
+[Unit]
+Description=Restic backup service
+After=network.target
+
+[Service]
+ExecStart=restic -r $RESTIC_REPO backup $BACKUP_PATH -p \$(pass $PASSWORD_ENTRY)
+Environment=RESTIC_PASSWORD_COMMAND="pass $PASSWORD_ENTRY"
+
+[Install]
+WantedBy=default.target
+EOF

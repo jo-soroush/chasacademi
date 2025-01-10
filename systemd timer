@@ -1,0 +1,13 @@
+#!/bin/bash
+# Create systemd timer file
+echo "Creating systemd timer file..."
+cat <<EOF | sudo tee /usr/lib/systemd/system/restic.timer > /dev/null
+[Unit]
+Description=Run Restic backup on startup after 5 minutes.
+
+[Timer]
+OnBootSec=5min
+
+[Install]
+WantedBy=timers.target
+EOF

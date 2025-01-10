@@ -1,0 +1,6 @@
+#!/bin/bash
+# Enable and start the systemd service and timer
+echo "Enabling and starting systemd timer and service..."
+sudo systemctl enable restic.service
+sudo systemctl enable restic.timer
+sudo systemctl start restic.timer

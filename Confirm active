@@ -1,0 +1,6 @@
+#!/bin/bash
+# Confirm that the timer is active
+echo "Confirming timer activation..."
+systemctl list-timers --all | grep restic
+
+echo "Setup complete! Restic backup timer is now active."
